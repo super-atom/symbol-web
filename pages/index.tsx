@@ -1,15 +1,34 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import Head from "next/head";
+import React from "react";
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
-)
+import Banner from "../components/home/Banner";
+import MainView from "../components/home/MainView";
+import Tags from "../components/home/Tags";
 
-export default IndexPage
+const Home = () => (
+  <>
+    <Head>
+      <title>HOME | NEXT REALWORLD</title>
+      <meta
+        name="description"
+        content="Next.js + SWR codebase containing realworld examples (CRUD, auth, advanced patterns, etc) that adheres to the realworld spec and API"
+      />
+    </Head>
+    <div className="home-page">
+      <Banner />
+      <div className="container page">
+        <div className="row">
+          <MainView />
+          <div className="col-md-3">
+            <div className="sidebar">
+              <p>Popular Tags</p>
+              <Tags />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>
+);
+
+export default Home;
