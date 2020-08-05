@@ -4,7 +4,7 @@ import CustomLink from "../common/CustomLink";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { usePageDispatch } from "../../lib/context/PageContext";
 import useSWR from "swr";
-import { SERVER_BASE_URL } from "../../lib/utils/constant";
+import { SERVER_BASE_URL } from "../../lib/settings/constant";
 import fetcher from "../../lib/utils/fetcher";
 import ErrorMessage from "../common/ErrorMessage";
 

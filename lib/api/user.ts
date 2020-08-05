@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { SERVER_BASE_URL } from "../utils/constant";
+import { SERVER_BASE_URL } from "../settings/constant";
 
 const UserAPI = {
   current: async () => {

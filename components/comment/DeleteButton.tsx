@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import useSWR, { trigger } from "swr";
 
-import { SERVER_BASE_URL } from "../../lib/utils/constant";
+import { SERVER_BASE_URL } from "../../lib/settings/constant";
 import storage from "../../lib/utils/storage";
 
 const DeleteButton = ({ commentId }) => {

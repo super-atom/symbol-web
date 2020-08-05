@@ -7,7 +7,7 @@ import ArticleMeta from "../../components/article/ArticleMeta";
 import CommentList from "../../components/comment/CommentList";
 import ArticleAPI from "../../lib/api/article";
 import { Article } from "../../lib/types/articleType";
-import { SERVER_BASE_URL } from "../../lib/utils/constant";
+import { SERVER_BASE_URL } from "../../lib/settings/constant";
 import fetcher from "../../lib/utils/fetcher";
 
 const ArticlePage = (initialArticle) => {

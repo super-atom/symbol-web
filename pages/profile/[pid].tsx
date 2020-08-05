@@ -11,7 +11,7 @@ import FollowUserButton from "../../components/profile/FollowUserButton";
 import ProfileTab from "../../components/profile/ProfileTab";
 import UserAPI from "../../lib/api/user";
 import checkLogin from "../../lib/utils/checkLogin";
-import { SERVER_BASE_URL } from "../../lib/utils/constant";
+import { SERVER_BASE_URL } from "../../lib/settings/constant";
 import fetcher from "../../lib/utils/fetcher";
 import storage from "../../lib/utils/storage";
 

@@ -1,4 +1,5 @@
 export const SERVER_BASE_URL = `https://conduit.productionready.io/api`;
+export const SYMBOL_API_URL = process.env.NEXT_PUBLIC_SYMBOL_API_URL;
 
 export const APP_NAME = `conduit`;
 

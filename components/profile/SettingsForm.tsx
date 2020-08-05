@@ -5,7 +5,7 @@ import useSWR, { mutate } from "swr";
 
 import ListErrors from "../common/ListErrors";
 import checkLogin from "../../lib/utils/checkLogin";
-import { SERVER_BASE_URL } from "../../lib/utils/constant";
+import { SERVER_BASE_URL } from "../../lib/settings/constant";
 import storage from "../../lib/utils/storage";
 
 const SettingsForm = () => {

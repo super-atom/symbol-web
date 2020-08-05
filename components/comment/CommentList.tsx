@@ -8,7 +8,7 @@ import ErrorMessage from "../common/ErrorMessage";
 import LoadingSpinner from "../common/LoadingSpinner";
 
 import { CommentType } from "../../lib/types/commentType";
-import { SERVER_BASE_URL } from "../../lib/utils/constant";
+import { SERVER_BASE_URL } from "../../lib/settings/constant";
 import fetcher from "../../lib/utils/fetcher";
 
 const CommentList = () => {

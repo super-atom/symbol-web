@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import useSWR from "swr";
 
-import ArticlePreview from "./ArticlePreview";
+import ProfilePreview from "components/profile/ProfilePreview";
 import ErrorMessage from "../common/ErrorMessage";
 import LoadingSpinner from "../common/LoadingSpinner";
 import Maybe from "../common/Maybe";
@@ -13,10 +13,10 @@ import {
   usePageCountDispatch,
 } from "../../lib/context/PageCountContext";
 import useViewport from "../../lib/hooks/useViewport";
-import { SERVER_BASE_URL, DEFAULT_LIMIT } from "../../lib/settings/constant";
+import { SYMBOL_API_URL, DEFAULT_LIMIT } from "../../lib/settings/constant";
 import fetcher from "../../lib/utils/fetcher";
 
-const ArticleList = () => {
+const ProfileList = () => {
   const page = usePageState();
   const pageCount = usePageCountState();
   const setPageCount = usePageCountDispatch();
@@ -30,38 +30,14 @@ const ArticleList = () => {
 
   const isProfilePage = pathname.startsWith(`/profile`);
 
-  let fetchURL = `${SERVER_BASE_URL}/articles?offset=${page * DEFAULT_LIMIT}`;
-
-  switch (true) {
-    case !!tag:
-      fetchURL = `${SERVER_BASE_URL}/articles${asPath}&offset=${
-        page * DEFAULT_LIMIT
-      }`;
-      console.log("1");
-      break;
-    case isProfilePage && !!favorite:
-      fetchURL = `${SERVER_BASE_URL}/articles?favorited=${encodeURIComponent(
-        String(pid)
-      )}&offset=${page * DEFAULT_LIMIT}`;
-      console.log("2");
-      break;
-    case isProfilePage && !favorite:
-      fetchURL = `${SERVER_BASE_URL}/articles?author=${encodeURIComponent(
-        String(pid)
-      )}&offset=${page * DEFAULT_LIMIT}`;
-      console.log("3");
-      break;
-    case !isProfilePage && !!follow:
-      fetchURL = `${SERVER_BASE_URL}/articles/feed?offset=${
-        page * DEFAULT_LIMIT
-      }`;
-      console.log("4");
-      break;
-    default:
-      break;
+  let fetchURL;
+  if (isProfilePage) {
+    fetchURL = `${SYMBOL_API_URL}/profiles?page=0&limit=3&order=ASC&sortBy=updatedAt`;
   }
 
   const { data, error } = useSWR(fetchURL, fetcher);
+  console.log("FETCH", data, fetchURL);
+
   if (error) {
     return (
       <div className="col-md-9">
@@ -75,20 +51,20 @@ const ArticleList = () => {
 
   if (!data) return <LoadingSpinner />;
 
-  const { articles, articlesCount } = data;
-  setPageCount(articlesCount);
+  const { count } = data;
+  setPageCount(count);
 
-  if (articles && articles.length === 0) {
+  if (data.length === 0) {
     return <div className="article-preview">No articles are here... yet.</div>;
   }
 
   return (
     <>
-      {articles?.map((article) => (
-        <ArticlePreview key={article.slug} article={article} />
+      {data.data.rows?.map((profile) => (
+        <ProfilePreview key={profile.profile_id} profile={profile} />
       ))}
 
-      <Maybe test={articlesCount && articlesCount > 20}>
+      <Maybe test={count && count > 20}>
         <Pagination
           total={pageCount}
           limit={20}
@@ -102,4 +78,4 @@ const ArticleList = () => {
   );
 };
 
-export default ArticleList;
+export default ProfileList;

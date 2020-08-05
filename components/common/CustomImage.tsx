@@ -1,7 +1,7 @@
 import {
   DEFAULT_PROFILE_IMAGE,
   DEFAULT_IMAGE_SOURCE,
-} from "../../lib/utils/constant";
+} from "../../lib/settings/constant";
 import handleBrokenImage from "../../lib/utils/handleBrokenImage";
 
 interface CustomImageProps {
