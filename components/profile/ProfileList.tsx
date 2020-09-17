@@ -36,9 +36,9 @@ const ProfileList = () => {
   }
 
   const { data, error } = useSWR(fetchURL, fetcher);
-  console.log("FETCH", data, fetchURL);
 
   if (error) {
+    console.log("SWR DATA: ", data);
     return (
       <div className="col-md-9">
         <div className="feed-toggle">
